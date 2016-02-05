@@ -1,4 +1,6 @@
-# The Premise Behind InEngine.io
+![InEngine Logo](logo/InEngine-Logo 800x496.png)
+
+# The Premise Behind InEngine
 ### Managing Context and Content
 
 It is time to manage both the Context and Content of our Websites.
