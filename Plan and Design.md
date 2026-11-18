@@ -143,7 +143,8 @@ Standing rules for authors (and agents) building `inengine/*` feature modules. T
 8. **Capabilities:** ship the skeleton’s capability descriptor stub (provides/requires, events, peers) so **`modulus-inspect`** can read metadata without booting the module.  
 9. **Quality:** SemVer, Pint, Pest, PHPStan; CLI/API first.  
 10. **Data safety:** migrations on enable/upgrade; disable/uninstall non-destructive by default.  
-11. **Dependencies:** Composer `require` is the hard graph. Required Modulus modules must be enabled first; non-Modulus packages need only be installed. Reach down from `activating()` to publish/migrate those plain packages — Modulus will not.
+11. **Dependencies:** Composer `require` is the hard graph. Required Modulus modules must be enabled first; non-Modulus packages need only be installed (normal Laravel discovery). Optionally reach down from `activating()` for config/dist/migrations.  
+12. **Integration:** Listen to Modulus lifecycle events; domain events via Laravel; contracts + DTOs bound in the container (`resources/INTEGRATION.md`).
 
 ---
 
@@ -285,10 +286,19 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 
 ### Step 8 — Event bus + contracts + DTOs
 
-- Dispatch module lifecycle events; document pattern for domain events.  
-- Publish/consume **interfaces** and **DTOs** for cross-module data (in Modulus or small shared contracts package later if needed).  
+- Dispatch module lifecycle events (`ModuleEnabled`, `ModuleDisabled`, `ModuleForgotten`, `ModuleUpgraded`, `ModuleRegistered`, `ModulePublished`, `ModuleSeeded`) with `ModuleStateData` where useful.  
+- Document domain-event pattern (normal Laravel `Event` / listeners).  
+- Publish/consume **interfaces** and **DTOs** via container bindings (skeleton `src/Contracts` + `src/DataTransferObjects`; Modulus `INTEGRATION.md`). Shared contracts package only if later needed.  
 - **Why:** Loose coupling + type-safe integration.  
-- **Considerations:** Don’t invent a second plugin API; prefer Laravel container bindings to interfaces.
+- **Considerations:** Don’t invent a second plugin API; prefer Laravel container bindings to interfaces; owning-module hooks vs peer events.
+
+### Step 8b — Laravel Boost agent guidelines (Core, Modulus, skeleton)
+
+- Ship Boost-discoverable package guidelines/skills from Modulus (`resources/boost/guidelines`, `resources/boost/skills`) so Core `boost:install` / `boost:update` loads them.  
+- Skeleton ships the same for generated feature modules + repo `AGENTS.md` / `.ai/guidelines`.  
+- Core: `.ai/guidelines/inengine-core.md`, `.ai/skills/modulus-modules`, `.ai/rules` (path-scoped host rules), `boost.json` includes `inengine/modulus`, `post-update-cmd` runs `boost:update`.  
+- **Why:** Cursor / Claude / other agents follow install≠enable, naming, deps, and integration without relying only on Cursor `.mdc` or scattered markdown.  
+- **Considerations:** Keep human docs (`DESIGN.md`, `TEMPLATE.md`, Documentation plan) in sync with Boost guidelines; prefer PHPDoc over inline comments per Boost foundation rules.
 
 ### Step 9 — Full Artisan surface + `modulus:doctor`
 
