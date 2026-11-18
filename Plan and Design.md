@@ -209,7 +209,10 @@ Skeleton and CI templates enforce this so new modules don’t skip the bar.
 | `modulus:disable` | Disable (non-destructive; hooks; state swap; discovery sync) |
 | `modulus:uninstall` | Non-destructive uninstall by default; state + discovery + Composer remove |
 | `modulus:status` | One module: Composer vs state vs discovery |
-| **`modulus:doctor`** | Full diagnostics: drift, corrupt/missing state, PHP/Laravel constraints, dependency graph issues |
+| `modulus:publish` | Publish config/assets into the host |
+| `modulus:seed` | Confirmed module seeder |
+| `modulus:upgrade` | Apply installed Composer version(s); optional `--publish` / `--approve=` |
+| **`modulus:doctor`** | Full diagnostics: drift, missing packages, deps, SemVer constraint policy; feeds modulus-ui |
 
 ---
 
@@ -302,16 +305,14 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 
 ### Step 9 — Full Artisan surface + `modulus:doctor`
 
-- Implement list/discover/enable/disable/uninstall/status/**doctor**; every UI action maps here.  
-- Doctor: state file health, Composer installed set, PackageManifest/cache sync, SemVer/constraint mismatches, dependency violations.  
-- **Missing modules (planned remediation):** Doctor must **list** every package tracked in Modulus state that is not present in Composer’s installed set (enabled and disabled), building on runtime `MissingModuleException` / `validateTrackedPackages()`.  
-  - **Repair options (interactive CLI; later UI):**  
-    1. **Install** — ask `modulus-composer` / Composer to `require` the missing package (then discover → disabled → optional enable).  
-    2. **Supply path/VCS** — operator points at a local path, Git URL, or private source; install then re-validate.  
-    3. **Substitute** — map the missing package to another installed (or newly installed) module that fulfills the same role; update Modulus state (forget missing / register+enable substitute) and document the replacement for deps/inspect.  
-  - Non-interactive / CI: doctor reports missing packages + suggested actions; exit non-zero when any **enabled** package is missing; `--fix` only with explicit flags (no silent Composer writes).  
-- **Why:** Operator trust; UI parity; debug discovery drift; recover from removed vendors without hand-editing state.  
-- **Considerations:** Doctor exit codes for CI; machine-readable `--json` later; Composer I/O stays in `modulus-composer`, not Modulus core; substitution must respect Step 7 dependency rules.
+- Implement list/discover/enable/disable/uninstall/status/publish/seed/upgrade/**outdated**/**update**/**doctor**; every UI action maps here.  
+- **Auto-upgrade (enabled modules):** handshake reports Composer installed version; version change → migrate + upgrade hooks + optional `ModuleManualAttentionRequired` for modulus-ui.  
+- **SemVer default:** host constraints should be `~x.y.z` (patch/minor-line pin). Minor/major bumps require CLI/UI approval; `modulus-composer` rewrites constraints + lock (Step 10). Doctor warns on looser constraints (`^`, `*`).  
+- **Available updates (CLI + UI):** `modulus:outdated` / `ModuleUpdateAvailable` + doctor `update_available`; optional `modulus:update --auto` for patch-within-constraint when `modulus.updates.auto_patch` and a real `ModuleUpdateApplier` (Step 10) are bound.  
+- Doctor: state health, missing packages (enabled+disabled), dependency violations, constraint policy, available updates, manual-attention items. Structured `DoctorReport` / `DoctorFinding` for modulus-ui notifications.  
+- **Missing modules (remediation suggestions; execute in Step 10 / UI):** install / supply path-VCS / substitute. Exit non-zero when any **enabled** package is missing. No silent Composer writes from doctor.  
+- **Why:** Operator trust; UI parity; safe upgrades; debug discovery drift.  
+- **Considerations:** Doctor `--json` later; Composer I/O stays in `modulus-composer`; modulus-ui consumes findings + upgrade/attention/update-available events.
 
 ### Step 10 — `inengine/modulus-composer` (+ marketplace / UI later)
 
