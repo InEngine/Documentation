@@ -316,11 +316,11 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 - **Why:** Operator trust; UI parity; safe upgrades; debug discovery drift.  
 - **Considerations:** Doctor `--json` later; Composer I/O stays in `modulus-composer`; modulus-ui consumes findings + upgrade/attention/update-available events.
 
-### Step 10 — `inengine/modulus-composer` (+ marketplace / UI later)
+### Step 10 — `inengine/modulus-composer` (+ marketplace / UI later) — **DONE** (composer)
 
-- **`modulus-composer`:** Composer require/remove/update client; Packagist / private / Git; Artisan-driven hooks that call into Modulus after acquire/remove (`Modules/ModulusComposer`, GitHub `InEngine/ModulusComposer`). Constraint rewrite via host policy (`~x.y.z`); real `ModuleUpdateApplier`.  
-- **`modulus-marketplace`:** browse/search UX over known sources; depends on composer client for install (**later**).  
-- **`modulus-ui`:** optional operator UI (separate; after CLI solid) (**later**).  
+- **`modulus-composer`:** ✅ Shipped — Composer require/remove/update/approve; Packagist / private / Git; Artisan hooks → discover/publish/forget (`Modules/ModulusComposer`, GitHub `InEngine/ModulusComposer`). Constraint rewrite via host policy (`~x.y.z`); real `ModuleUpdateApplier`. **Public MIT.**  
+- **`modulus-marketplace`:** browse/search UX over known sources; depends on composer client for install (**later** — not blocking).  
+- **`modulus-ui`:** operator UI (**later** — **private Pro**, commercial; not public Packagist).  
 - **Why:** Install/Composer I/O and UI stay out of runtime core.  
 - **Considerations:** Auth for private Packagist via Composer `auth.json`; timeouts; non-interactive CI; always discover→disabled→explicit enable; never put Composer hooks in `inengine/modulus`. Core does **not** hard-require this package.
 
@@ -404,6 +404,7 @@ Behavior sketch:
 - **MIT** for Core, Modulus, Modulus Composer, Skeleton (public OSS tier).  
 - **`inengine/modulus-ui`** = **private Pro** (commercial; Spatie-style package boundary, not Core/Pro flags inside MIT packages).  
 - **Innkeeper** (product) = **unreleased source** until deliberately published.  
+- **Step 10** (`modulus-composer`) marked **DONE**; marketplace + private Pro UI remain later and do **not** block Step 11/13.  
 
 ### 2026-11-03
 

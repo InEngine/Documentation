@@ -4,8 +4,10 @@
 
 | Doc | Purpose |
 |-----|---------|
-| [Plan and Design.md](Plan%20and%20Design.md) | Platform architecture, Modulus, modules |
-| [Distribution and Installation.md](Distribution%20and%20Installation.md) | `create-project` vs `composer require`; Core, modules, products (InnKeeper) |
+| [Plan and Design.md](Plan%20and%20Design.md) | Platform architecture, Modulus, modules; **Step 10 Composer done** |
+| [Distribution and Installation.md](Distribution%20and%20Installation.md) | `create-project` vs `composer require`; Core, modules, products (InnKeeper); **licensing split** |
+
+**Licensing (2026-11-19):** Core / Modulus / Modulus Composer / Skeleton = **MIT**. `modulus-ui` = **private Pro**. InnKeeper = **unreleased source**.
 
 ---
 

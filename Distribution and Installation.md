@@ -15,8 +15,8 @@ Use **both** shapes — they solve different jobs:
 | **Core** | `type: project` (like `laravel/laravel`) | `composer create-project inengine/core my-app` |
 | **Modulus** | package (`inengine/modulus`) | Required **by Core**; also `composer require` into any Laravel host that wants the runtime |
 | **Feature modules** | packages (`inengine/{feature}`) | `composer require inengine/alert` (etc.), then `modulus:enable` |
-| **Modulus extensions** | packages (`inengine/modulus-{role}`) | Optional `composer require` (composer client, marketplace, UI, inspect) |
-| **Products** (InnKeeper, Provost, …) | `type: project` | `composer create-project …` **or** clone + `composer install` — a Core-shaped app with product modules pre-declared |
+| **Modulus extensions** | packages (`inengine/modulus-{role}`) | Optional `composer require` — public MIT for Composer; **`modulus-ui` private Pro**; marketplace/inspect planned |
+| **Products** (InnKeeper, Provost, …) | `type: project` | `composer create-project …` **or** clone + `composer install` — a Core-shaped app with product modules pre-declared. **InnKeeper = unreleased source** until published |
 
 Do **not** try to ship Core only as a library you `require` into a blank Laravel app as the primary path. Core *is* the opinionated host (routes shell, Vite, Pest, Livewire, early Modulus boot). Treating it like a package fights that role and duplicates what `create-project` already does well.
 
@@ -134,6 +134,17 @@ Production replaces path repos with Packagist / private Packagist / Git tags.
 
 ---
 
+## Licensing (locked 2026-11-19)
+
+| Work | License / visibility |
+|------|----------------------|
+| Core, Modulus, Modulus Composer, Skeleton | **MIT** — public GitHub / Packagist when published |
+| Feature modules (Alert, …) | Prefer **MIT** unless a product needs otherwise |
+| `inengine/modulus-ui` | **Private Pro** — commercial; private repo / private Composer; not public Packagist |
+| InnKeeper (product) | **Unreleased source** — keep private until deliberately published under product terms |
+
+Do not put Pro UI code inside MIT packages. Pro depends on Modulus; Modulus never depends on Pro.
+
 ## Decision checklist (when locking “how we ship”)
 
 1. **Publish target:** public Packagist vs private Packagist vs VCS-only for early beta.  
@@ -141,7 +152,8 @@ Production replaces path repos with Packagist / private Packagist / Git tags.
 3. **Product preset:** InnKeeper create-project name (`excellentingenuity/innkeeper` vs `inengine/innkeeper`) and which modules are required vs optional add-ons.  
 4. **Fairview path:** migrate Fairview from standalone Laravel into InnKeeper-on-Core, or keep Fairview as content seed only.  
 5. **Hosted vs self-serve:** EIG-hosted provision clones/create-projects the product; self-serve docs mirror the same Composer entrypoint.  
-6. **Modulus marketplace:** optional later; does not replace Composer as source of truth for acquire.
+6. **Modulus marketplace:** optional later; does not replace Composer as source of truth for acquire.  
+7. **`modulus-ui`:** private Pro packaging (license key / private Packagist) when scaffolded.
 
 ---
 
