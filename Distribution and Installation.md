@@ -100,7 +100,7 @@ Until that is decided, **InnKeeper** lives as an empty-ish product repo that wil
 ### C. Module authors
 
 ```bash
-# from InEngine/module-skeleton
+# from InEngine/Skeleton
 composer require inengine/my-module   # in a Core or product host
 php artisan modulus:enable inengine/my-module
 ```

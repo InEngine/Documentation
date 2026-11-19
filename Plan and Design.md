@@ -26,7 +26,7 @@ Local path wiring: Core `composer.local.dist.json` → `composer.local.json` wit
 ## Design principles (summary)
 
 1. **CLI / API first; UI optional** — Artisan covers every UI capability; same PHP API underneath.  
-2. **Spatie-style packages** — `laravel-package-tools` + planned `InEngine/module-skeleton`.  
+2. **Spatie-style packages** — `laravel-package-tools` + planned `InEngine/Skeleton`.  
 3. **Laravel `extra.laravel.providers` only** — no parallel `extra.inengine` metadata.  
 4. **Register-with-Modulus handshake** — if Modulus present, register and stay disabled until enabled; if absent, boot standalone.  
 5. **File-backed state via `ModulusStateStore`** — not DB; atomic temp-write + swap (nWidart-style durability).  
@@ -122,7 +122,7 @@ Anything that is **not** the enable/disable/discovery runtime stays out of `inen
 1. Core never requires UI or Composer-shell packages.  
 2. **Install ≠ enable** — `modulus-composer` / marketplace end in discover→disabled→`modulus:enable`.  
 3. Composer **hooks** (post-require / pre-remove integration with Modulus) live in **`modulus-composer`**, not core.  
-4. Feature modules stay `inengine/{feature}` (from `module-skeleton`), not `modulus-*`.  
+4. Feature modules stay `inengine/{feature}` (from `Skeleton`), not `modulus-*`.  
 5. Names are locked as working titles until first publish; rename only if Packagist conflict.
 
 **Why:** Keeps the runtime lean; lets hosts adopt Composer automation and UI independently; clear package names for Composer/UI/inspect concerns.
@@ -134,7 +134,7 @@ Anything that is **not** the enable/disable/discovery runtime stays out of `inen
 Standing rules for authors (and agents) building `inengine/*` feature modules. The skeleton must encode these; do not invent parallel conventions.
 
 1. **Package name:** `inengine/{feature}` (e.g. `inengine/alert`). Do **not** use `inengine/modulus-*` — that prefix is reserved for Modulus **runtime extensions**.  
-2. **Scaffold:** generate from **`InEngine/module-skeleton`** (customized Spatie package).  
+2. **Scaffold:** generate from **`InEngine/Skeleton`** (customized Spatie package).  
 3. **Provider:** extend Modulus `ModuleServiceProvider`; declare `modulusPackageName()`; boot only when Modulus says enabled; standalone full boot if Modulus is absent.  
 4. **Discovery:** only `extra.laravel.providers` (and aliases) in `composer.json` — no parallel `extra.inengine` provider list.  
 5. **Install vs enable:** never assume “Composer installed” means enabled; default disabled until `modulus:enable`.  
@@ -259,7 +259,7 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 - **Why:** Required second gate if discovery cache and state diverge.  
 - **Considerations:** Provider may not load at all when filtered out — discovery scan must not depend on executing disabled providers (scan Composer metadata / class hierarchy carefully).
 
-### Step 4b — `InEngine/module-skeleton` (was Step 12; pulled forward)
+### Step 4b — `InEngine/Skeleton` (was Step 12; pulled forward)
 
 - Separate **GitHub template** repository (Spatie `package-skeleton-laravel` model) — **not** a Packagist package; never `composer require` the skeleton itself.  
 - InEngine / Modulus defaults, extends `ModuleServiceProvider` (Step 4 handshake), capability descriptor stub, Pint/Pest/PHPStan/CI, SemVer notes, non-destructive lifecycle docs.  
@@ -316,11 +316,11 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 
 ### Step 10 — `inengine/modulus-composer` (+ marketplace / UI later)
 
-- **`modulus-composer`:** Composer require/remove/update client; Packagist / private / Git; optional Composer hooks that call into Modulus after acquire/remove.  
-- **`modulus-marketplace`:** browse/search UX over known sources; depends on composer client for install.  
-- **`modulus-ui`:** optional operator UI (separate; after CLI solid).  
+- **`modulus-composer`:** Composer require/remove/update client; Packagist / private / Git; Artisan-driven hooks that call into Modulus after acquire/remove (`Modules/ModulusComposer`, GitHub `InEngine/ModulusComposer`). Constraint rewrite via host policy (`~x.y.z`); real `ModuleUpdateApplier`.  
+- **`modulus-marketplace`:** browse/search UX over known sources; depends on composer client for install (**later**).  
+- **`modulus-ui`:** optional operator UI (separate; after CLI solid) (**later**).  
 - **Why:** Install/Composer I/O and UI stay out of runtime core.  
-- **Considerations:** Auth for private Packagist; timeouts; non-interactive CI; always discover→disabled→explicit enable; never put Composer hooks in `inengine/modulus`.
+- **Considerations:** Auth for private Packagist via Composer `auth.json`; timeouts; non-interactive CI; always discover→disabled→explicit enable; never put Composer hooks in `inengine/modulus`. Core does **not** hard-require this package.
 
 ### Step 11 — Quality gates everywhere
 
@@ -330,7 +330,7 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 
 ### Step 12 — (relocated)
 
-See **Step 4b** — `InEngine/module-skeleton` was pulled forward immediately after the handshake.
+See **Step 4b** — `InEngine/Skeleton` was pulled forward immediately after the handshake.
 
 ### Step 13 — Pilot + product hosts
 
@@ -385,8 +385,8 @@ Behavior sketch:
 | `InEngine/Core` | Host — https://github.com/InEngine/Core |
 | `InEngine/Modules/Modulus` | Runtime — https://github.com/InEngine/Modulus (`DESIGN.md` mirrors this) |
 | `InEngine/Documentation` | This file, logos, premise |
-| `InEngine/Modules/*` | Feature modules (from module-skeleton) |
-| `InEngine/module-skeleton` | **Required** GitHub template (Spatie-fork; not Packagist) — https://github.com/InEngine/module-skeleton |
+| `InEngine/Modules/*` | Feature modules (from Skeleton) |
+| `InEngine/Skeleton` | **Required** GitHub template (Spatie-fork; not Packagist) — https://github.com/InEngine/Skeleton |
 | `inengine/modulus-composer` | Planned — Composer require/remove + optional Composer hooks |
 | `inengine/modulus-marketplace` | Planned — browse/search; uses composer client for install |
 | `inengine/modulus-ui` | Planned — operator UI over Modulus + extension APIs |
@@ -402,7 +402,7 @@ Behavior sketch:
 - Modulus **extensions** use `inengine/modulus-{role}` names: `modulus-composer`, `modulus-marketplace`, `modulus-ui`, `modulus-inspect`.  
 - **Composer require/remove and Composer hooks** belong in **`modulus-composer`**, not core.  
 - Modulus modules **must** refuse to boot unless Modulus reports enabled (handshake + PackageManifest).  
-- **All Modulus-compatible modules** should come from **`InEngine/module-skeleton`**.  
+- **All Modulus-compatible modules** should come from **`InEngine/Skeleton`**.  
 - **`modulus-inspect`**: capability catalog (provides/requires, events, peers, integrate guidance).  
 
 ### 2026-09-08
