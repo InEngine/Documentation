@@ -33,4 +33,3 @@ Core (`inengine/core`) stays a **project** (`create-project` / clone); it requir
 ## Private Pro (not Packagist public)
 
 - `inengine/modulus-ui` → private repo / private Packagist later.
-- InnKeeper → unreleased source until product publish.

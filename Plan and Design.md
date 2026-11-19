@@ -15,11 +15,11 @@ Core stays free of product features and of a default Laravel `User`. Identity/au
 | **Core** | Opinionated Laravel 13 / PHP 8.5 shell (Livewire, Pest, Tailwind, Pint, PHPStan). Requires Modulus; composition root only. |
 | **Modulus** | Module runtime composed of focused classes/services (not a single god object): state, discovery sync, lifecycle, CLI, Composer/Packagist client submodule. |
 | **Feature modules** | SemVer’d Composer packages (`inengine/*`) — Spatie layout, Pint/Pest/PHPStan, CLI/API first. |
-| **Products** | Apps on Core + modules (e.g. Provost, **InnKeeper**) assembled by which modules are installed and enabled. |
+| **Products** | Apps on Core + modules, assembled by which modules are installed and enabled. |
 
 Local path wiring: Core `composer.local.dist.json` → `composer.local.json` with path repos under `../Modules/*`. Production/CI require published SemVer constraints of `inengine/modulus` (and modules) from Packagist / private Packagist / VCS.
 
-**How to ship / install** (create-project vs require, InnKeeper stub): see [Distribution and Installation.md](Distribution%20and%20Installation.md). Product stub: `../../InnKeeper` (sibling under `Projects/`).
+**How to ship / install** (create-project vs require): see [Distribution and Installation.md](Distribution%20and%20Installation.md).
 
 ---
 
@@ -117,7 +117,7 @@ Anything that is **not** the enable/disable/discovery runtime stays out of `inen
 | **`inengine/modulus-ui`** | Operator UI | Livewire (or similar) screens that call Modulus + extension APIs; no Composer shelling of its own — **private Pro** (commercial; not public Packagist) |
 | **`inengine/modulus-inspect`** | Capability catalog | Inspect / compat / integrate docs (Step 14); richer than Composer `suggest` |
 
-**Licensing split:** Core + Modulus + Modulus Composer + Skeleton = **MIT** (public). **`modulus-ui` = private Pro**. Product apps such as **Innkeeper = unreleased source** until published under their own terms.
+**Licensing split:** Core + Modulus + Modulus Composer + Skeleton = **MIT** (public). **`modulus-ui` = private Pro**.
 
 **Rules:**
 
@@ -337,7 +337,7 @@ See **Step 4b** — `InEngine/Skeleton` was pulled forward immediately after the
 ### Step 13 — Pilot + product hosts
 
 - Convert one module (e.g. Alert) **from the skeleton**; verify on Core Herd.  
-- Provost “Require Modulus” and copy Core early-boot pattern.  
+- Copy Core early-boot pattern (`PackageManifestInstaller`) into other product hosts as they adopt Modulus.  
 - **Why:** Prove the spine before packs/CRM/LMS.  
 - **Considerations:** Migrate existing `extra.laravel.providers` packages onto base provider without breaking standalone use.
 
@@ -393,7 +393,6 @@ Behavior sketch:
 | `inengine/modulus-marketplace` | Planned — browse/search; uses composer client for install |
 | `inengine/modulus-ui` | Planned — operator UI; **private Pro** |
 | `inengine/modulus-inspect` | Planned — capability inspect / compat / integrate docs |
-| Innkeeper | Product on Core — **unreleased source** |
 
 ---
 
@@ -403,7 +402,6 @@ Behavior sketch:
 
 - **MIT** for Core, Modulus, Modulus Composer, Skeleton (public OSS tier).  
 - **`inengine/modulus-ui`** = **private Pro** (commercial; Spatie-style package boundary, not Core/Pro flags inside MIT packages).  
-- **Innkeeper** (product) = **unreleased source** until deliberately published.  
 - **Step 10** (`modulus-composer`) marked **DONE**; marketplace + private Pro UI remain later and do **not** block Step 11/13.  
 
 ### 2026-11-03
