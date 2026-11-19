@@ -7,7 +7,13 @@
 | `inengine/modulus` | https://github.com/InEngine/Modulus | `v0.1.0` |
 | `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | `v0.1.0` |
 
-Core (`inengine/core`) stays a **project** (`create-project`); it requires `inengine/modulus` `^0.1` from Packagist in production. Local/CI use gitignored `composer.local.json` (from `composer.local.dist.json`) for path `*@dev`.
+Core (`inengine/core`) stays a **project** (`create-project` / clone); it requires `inengine/modulus` `^0.1` from Packagist in production. Local/CI use gitignored `composer.local.json` (from `composer.local.dist.json`) for path `*@dev`.
+
+## Not on Packagist
+
+| Repo | Why |
+|------|-----|
+| [InEngine/Skeleton](https://github.com/InEngine/Skeleton) | Public GitHub **template** only (forked from [spatie/package-skeleton-laravel](https://github.com/spatie/package-skeleton-laravel)). Generated `inengine/{feature}` packages may be Packagist-published — the template itself must not. |
 
 ## Steps
 

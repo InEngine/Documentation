@@ -14,7 +14,7 @@ Use **both** shapes — they solve different jobs:
 |----------|----------------|--------------------|
 | **Core** | `type: project` (like `laravel/laravel`) | `composer create-project inengine/core my-app` |
 | **Modulus** | package (`inengine/modulus`) | Required **by Core**; also `composer require` into any Laravel host that wants the runtime |
-| **Feature modules** | packages (`inengine/{feature}`) | `composer require inengine/alert` (etc.), then `modulus:enable` |
+| **Feature modules** | packages (`inengine/{feature}`) | Create from public [Skeleton](https://github.com/InEngine/Skeleton) template (not Packagist), then `composer require` + `modulus:enable` |
 | **Modulus extensions** | packages (`inengine/modulus-{role}`) | Optional `composer require` — public MIT for Composer; **`modulus-ui` private Pro**; marketplace/inspect planned |
 | **Products** (InnKeeper, Provost, …) | `type: project` | `composer create-project …` **or** clone + `composer install` — a Core-shaped app with product modules pre-declared. **InnKeeper = unreleased source** until published |
 

@@ -6,9 +6,11 @@
 |-----|---------|
 | [Plan and Design.md](Plan%20and%20Design.md) | Platform architecture, Modulus, modules; **Step 10 Composer done** |
 | [Distribution and Installation.md](Distribution%20and%20Installation.md) | `create-project` vs `composer require`; Core, modules, products (InnKeeper); **licensing split** |
-| [Packagist.md](Packagist.md) | Public publish checklist for Modulus + Modulus Composer |
+| [Packagist.md](Packagist.md) | Public publish checklist for Modulus + Modulus Composer; Skeleton = template only |
 
 **Licensing (2026-11-19):** Core / Modulus / Modulus Composer / Skeleton = **MIT**. `modulus-ui` = **private Pro**. InnKeeper = **unreleased source**.
+
+**Core:** opinionated Laravel-based modular application builder framework — built on Laravel; requires Modulus; Modulus Composer opt-in. **Skeleton:** public GitHub template (not Packagist), attributed to Spatie `package-skeleton-laravel`.
 
 ---
 
