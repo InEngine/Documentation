@@ -111,11 +111,13 @@ Anything that is **not** the enable/disable/discovery runtime stays out of `inen
 
 | Package (planned) | Role | Notes |
 |-------------------|------|--------|
-| **`inengine/modulus`** | Runtime core | State, PackageManifest filter, repository, handshake, `modulus:*` lifecycle CLI |
-| **`inengine/modulus-composer`** | Composer client | `composer require` / `remove` / update wrappers; Packagist / private Packagist / Git; optional Composer script/event hooks that notify Modulus after acquire/remove → `discover` (disabled) → explicit enable. **Not** enable/disable itself |
+| **`inengine/modulus`** | Runtime core | State, PackageManifest filter, repository, handshake, `modulus:*` lifecycle CLI — **public MIT** |
+| **`inengine/modulus-composer`** | Composer client | `composer require` / `remove` / update wrappers; Packagist / private Packagist / Git; Artisan hooks → discover/publish (install ≠ enable). **Public MIT** |
 | **`inengine/modulus-marketplace`** | Browse / catalog UX | Search known module sources; may depend on `modulus-composer` for install; CLI first, optional UI later |
-| **`inengine/modulus-ui`** | Operator UI | Livewire (or similar) screens that call Modulus + extension APIs; no Composer shelling of its own |
+| **`inengine/modulus-ui`** | Operator UI | Livewire (or similar) screens that call Modulus + extension APIs; no Composer shelling of its own — **private Pro** (commercial; not public Packagist) |
 | **`inengine/modulus-inspect`** | Capability catalog | Inspect / compat / integrate docs (Step 14); richer than Composer `suggest` |
+
+**Licensing split:** Core + Modulus + Modulus Composer + Skeleton = **MIT** (public). **`modulus-ui` = private Pro**. Product apps such as **Innkeeper = unreleased source** until published under their own terms.
 
 **Rules:**
 
@@ -387,14 +389,21 @@ Behavior sketch:
 | `InEngine/Documentation` | This file, logos, premise |
 | `InEngine/Modules/*` | Feature modules (from Skeleton) |
 | `InEngine/Skeleton` | **Required** GitHub template (Spatie-fork; not Packagist) — https://github.com/InEngine/Skeleton |
-| `inengine/modulus-composer` | Planned — Composer require/remove + optional Composer hooks |
+| `inengine/modulus-composer` | Shipped — Composer require/remove/update/approve; public MIT |
 | `inengine/modulus-marketplace` | Planned — browse/search; uses composer client for install |
-| `inengine/modulus-ui` | Planned — operator UI over Modulus + extension APIs |
+| `inengine/modulus-ui` | Planned — operator UI; **private Pro** |
 | `inengine/modulus-inspect` | Planned — capability inspect / compat / integrate docs |
+| Innkeeper | Product on Core — **unreleased source** |
 
 ---
 
 ## Changelog of design decisions
+
+### 2026-11-19
+
+- **MIT** for Core, Modulus, Modulus Composer, Skeleton (public OSS tier).  
+- **`inengine/modulus-ui`** = **private Pro** (commercial; Spatie-style package boundary, not Core/Pro flags inside MIT packages).  
+- **Innkeeper** (product) = **unreleased source** until deliberately published.  
 
 ### 2026-11-03
 
