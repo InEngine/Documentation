@@ -5,7 +5,7 @@
 | Package | GitHub | First tag |
 |---------|--------|-----------|
 | `inengine/modulus` | https://github.com/InEngine/Modulus | `v0.1.0` |
-| `inengine/modulus-composer` | https://github.com/InEngine/ModulusComposer | `v0.1.0` |
+| `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | `v0.1.0` |
 
 Core (`inengine/core`) stays a **project** (`create-project`); it requires `inengine/modulus` `^0.1` from Packagist in production. Local/CI use gitignored `composer.local.json` (from `composer.local.dist.json`) for path `*@dev`.
 

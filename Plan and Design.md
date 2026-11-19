@@ -318,7 +318,7 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 
 ### Step 10 — `inengine/modulus-composer` (+ marketplace / UI later) — **DONE** (composer)
 
-- **`modulus-composer`:** ✅ Shipped — Composer require/remove/update/approve; Packagist / private / Git; Artisan hooks → discover/publish/forget (`Modules/ModulusComposer`, GitHub `InEngine/ModulusComposer`). Constraint rewrite via host policy (`~x.y.z`); real `ModuleUpdateApplier`. **Public MIT.**  
+- **`modulus-composer`:** ✅ Shipped — Composer require/remove/update/approve; Packagist / private / Git; Artisan hooks → discover/publish/forget (`Modules/ModulusComposer`, GitHub `InEngine/Modulus-Composer`). Constraint rewrite via host policy (`~x.y.z`); real `ModuleUpdateApplier`. **Public MIT.**  
 - **`modulus-marketplace`:** browse/search UX over known sources; depends on composer client for install (**later** — not blocking).  
 - **`modulus-ui`:** operator UI (**later** — **private Pro**, commercial; not public Packagist).  
 - **Why:** Install/Composer I/O and UI stay out of runtime core.  
