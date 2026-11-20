@@ -9,7 +9,7 @@
 | `inengine/modulus` | https://github.com/InEngine/Modulus | (TBD) |
 | `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | (TBD) |
 
-Core (`inengine/core`) stays a **project** (`create-project` / clone); it requires `inengine/modulus` `^0.1` from Packagist in production. Local/CI use gitignored `composer.local.json` (from `composer.local.dist.json`) for path `*@dev`.
+Core (`inengine/core`) stays a **project** (`create-project` / clone). Until Packagist, Core and Modulus Composer require `inengine/modulus` `*@dev` via path/VCS. After release, switch published constraints to `^0.1` and keep path `*@dev` only in gitignored `composer.local.json`.
 
 ## Not on Packagist
 
