@@ -66,15 +66,17 @@ Install ≠ enable (see Plan and Design): acquire with Composer, then `modulus:e
 ### A. Core (platform host)
 
 ```bash
-composer create-project inengine/core my-engine
+composer create-project inengine/core:^0.1@beta my-engine   # when Core is on Packagist
 cd my-engine
-# modulus already required by Core once published
+php bin/setup                    # or runs from post-create-project-cmd
 php artisan modulus:list
-composer require inengine/some-module
-php artisan modulus:enable inengine/some-module
+php artisan modulus-composer:require inengine/alert
+php artisan modulus:enable inengine/alert
 ```
 
-Until Packagist (or private Packagist) publishes SemVer builds, local/CI use **path / VCS** repos — same pattern as Core’s `composer.local.dist.json`.
+**Existing git / non-empty directory:** `create-project` cannot install there. Clone Core (or your fork), `composer install`, then `php bin/setup`.
+
+Local monorepo: `composer.local.json` from `composer.local.dist.json` → path `*@dev`. Published Core requires `inengine/modulus` + `inengine/modulus-composer` `^0.1@beta`.
 
 ### B. Product apps
 

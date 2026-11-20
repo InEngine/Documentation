@@ -1,35 +1,40 @@
 # Packagist publish checklist
 
-**Status:** Hold — repos are public and Packagist-ready, but **do not submit** and **do not cut GitHub Releases/tags** until we intentionally release (Step 11 is closed; release is a separate decision).
+**Status:** Beta published — `inengine/modulus` and `inengine/modulus-composer` at **`v0.1.0-beta.1`**.
 
 ## Packages (public MIT)
 
-| Package | GitHub | First tag (when releasing) |
-|---------|--------|------------------------------|
-| `inengine/modulus` | https://github.com/InEngine/Modulus | (TBD) |
-| `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | (TBD) |
+| Package | GitHub | Tag |
+|---------|--------|-----|
+| `inengine/modulus` | https://github.com/InEngine/Modulus | `v0.1.0-beta.1` |
+| `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | `v0.1.0-beta.1` |
 
-Core (`inengine/core`) stays a **project** (`create-project` / clone). Until Packagist, Core and Modulus Composer require `inengine/modulus` `*@dev` via path/VCS. After release, switch published constraints to `^0.1` and keep path `*@dev` only in gitignored `composer.local.json`.
+```bash
+composer require inengine/modulus:^0.1@beta
+composer require inengine/modulus-composer:^0.1@beta
+```
+
+Core (`inengine/core`) stays a **project** (`create-project` / clone). Published Core requires both packages `^0.1@beta`. Path `*@dev` only in gitignored `composer.local.json` (from `composer.local.dist.json`).
 
 ## Not on Packagist
 
 | Repo | Why |
 |------|-----|
 | [InEngine/Skeleton](https://github.com/InEngine/Skeleton) | Public GitHub **template** only (forked from [spatie/package-skeleton-laravel](https://github.com/spatie/package-skeleton-laravel)). Generated `inengine/{feature}` packages may be Packagist-published — the template itself must not. |
+| [InEngine/Core](https://github.com/InEngine/Core) | `type: project` create-project source (publish separately when ready). |
 
-## Steps
+## Steps (next stable)
 
-1. Repos **public** on GitHub.
-2. Default branch `main` contains the release commit (Modulus: merge `feat/modulus-state-store`).
-3. Tag annotated releases: `git tag -a v0.1.0 -m "v0.1.0"` && `git push origin v0.1.0`.
-4. Submit on [packagist.org](https://packagist.org/packages/submit) (or API) with GitHub URL.
-5. Enable Packagist GitHub Service / webhook so new tags auto-update.
-6. Verify: `composer show inengine/modulus` / `inengine/modulus-composer`.
+1. Default branch `main` contains the release commit.
+2. Tag annotated release: `git tag -a v0.1.0 -m "v0.1.0"` && `git push origin v0.1.0`.
+3. Packagist webhook auto-updates (packages already submitted).
+4. Switch Core / Composer published constraints from `^0.1@beta` → `^0.1`.
 
 ## Local / CI vs release
 
 - **Never commit** `composer.local.json`.
-- **Release / prod Core:** delete `composer.local.json` before deploy (release workflow strips it).
+- **Release / prod Core:** do not ship `composer.local.json` (release workflow strips it).
+- **CI:** Core keeps path Modulus checkout until CI is switched to Packagist-only (optional follow-up).
 - **Modulus Composer** published `composer.json` has **no** path `repositories`; local/CI copy `composer.local.dist.json` → `composer.local.json`.
 
 ## Private Pro (not Packagist public)
