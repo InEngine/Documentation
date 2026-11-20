@@ -1,6 +1,6 @@
 # Packagist publish checklist
 
-**Status:** Hold — repos are public and Packagist-ready, but **do not submit** and **do not cut GitHub Releases/tags** until Step 11 is closed and we intentionally release.
+**Status:** Hold — repos are public and Packagist-ready, but **do not submit** and **do not cut GitHub Releases/tags** until we intentionally release (Step 11 is closed; release is a separate decision).
 
 ## Packages (public MIT)
 

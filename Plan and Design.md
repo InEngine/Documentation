@@ -324,15 +324,17 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 - **Why:** Install/Composer I/O and UI stay out of runtime core.  
 - **Considerations:** Auth for private Packagist via Composer `auth.json`; timeouts; non-interactive CI; always discover→disabled→explicit enable; never put Composer hooks in `inengine/modulus`. Core does **not** hard-require this package.
 
-### Step 11 — Quality gates everywhere (**not UI**)
+### Step 11 — Quality gates everywhere (**not UI**) — **DONE**
 
 - Enforce SemVer + Pint + Pest + PHPStan on Core, Modulus, and module CI; document in skeleton.  
 - Shared CI templates live in Documentation `ci/` (copy into package `.github/workflows/`).  
 - Host **integration** tests in Core against real Modulus (early boot, `modulus:*`, discovery filter).  
+- PHPDoc pass on Modulus, Modulus Composer, and Skeleton public `src/` API (class + public/protected methods).  
 - **Not this step:** operator UI (`modulus-ui` private Pro) — later, after CLI spine.  
 - **Not this step:** Packagist/GitHub Release tags until intentionally cutting a release (prep only).  
 - **Why:** Platform reliability and release discipline.  
-- **Considerations:** Same PHP 8.5 floor; path-Modulus CI for Skeleton / Modulus Composer.
+- **Considerations:** Same PHP 8.5 floor; path-Modulus CI for Skeleton / Modulus Composer.  
+- **Next:** Step **13** (Alert pilot from Skeleton on Core Herd).
 
 ### Step 12 — (relocated; no open work)
 
@@ -407,6 +409,7 @@ Behavior sketch:
 - **MIT** for Core, Modulus, Modulus Composer, Skeleton (public OSS tier).  
 - **`inengine/modulus-ui`** = **private Pro** (commercial; Spatie-style package boundary, not Core/Pro flags inside MIT packages).  
 - **Step 10** (`modulus-composer`) marked **DONE**; marketplace + private Pro UI remain later and do **not** block Step 11/13.  
+- **Step 11** marked **DONE** — CI gates + Documentation `ci/` templates + Core↔Modulus integration tests + PHPDoc on Modulus / Modulus Composer / Skeleton. Next: Step **13**.  
 
 ### 2026-11-03
 
