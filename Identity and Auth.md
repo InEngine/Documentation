@@ -6,7 +6,7 @@ Design notes for composing **User**, optional **social companions** (Google, Git
 
 ## One-line summary
 
-**One User hub**; Google/GitHub as **optional side modules** that link into User; **Person** optional demographics; **Registry in Modulus** for soft discovery; **contracts + default bindings** so apps work when modules are omitted.
+**One User hub**; Google/GitHub as **optional side modules** that link into User; **Person** optional demographics; **Registry in Modulus** for soft discovery; **`users.auth_methods` JSON** allow-list of registry-aligned method ids; **contracts + default bindings** so apps work when modules are omitted.
 
 ## See also
 
