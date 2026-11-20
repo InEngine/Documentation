@@ -1,4 +1,6 @@
 # Template: Pint autofix for packages (copy into .github/workflows/fix-php-code-style-issues.yml)
+# InEngine default quality gate. Requires setup-php with mbstring — do not use
+# aglipanci/laravel-pint-action (fails with Call to undefined function mb_strimwidth()).
 name: Fix PHP code style issues
 
 on:

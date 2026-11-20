@@ -18,7 +18,7 @@ GitHub **reusable** `workflow_call` workflows need a stable public repo callers 
 |------|----------|
 | `package-run-tests.yml` | Spatie/Testbench packages (`inengine/modulus`, generated Skeleton modules, …) — Pest matrix PHP 8.5 × Laravel 12/13 |
 | `package-phpstan.yml` | Same packages — Larastan / PHPStan |
-| `package-pint.yml` | Same packages — Pint on push (auto-commit style) |
+| `package-pint.yml` | Same packages — Pint on push (auto-commit style). **InEngine default** for Core + packages; use `setup-php` + `mbstring` + `tools: pint` (do **not** use `aglipanci/laravel-pint-action` — it crashes without mbstring). Skeleton selects Pint via `configure.php` (`--no-pint` to opt out). |
 | `package-with-modulus-path.yml` | Packages that path-require Modulus in CI (Skeleton template, Modulus Composer) — checkout sibling `InEngine/Modulus` @ `main` |
 
 ## How to adopt
