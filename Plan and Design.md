@@ -334,9 +334,9 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 - **Why:** Platform reliability and release discipline.  
 - **Considerations:** Same PHP 8.5 floor; path-Modulus CI for Skeleton / Modulus Composer.
 
-### Step 12 — (relocated)
+### Step 12 — (relocated; no open work)
 
-See **Step 4b** — `InEngine/Skeleton` was pulled forward immediately after the handshake.
+Originally “module skeleton.” Pulled forward as **Step 4b** (`InEngine/Skeleton`) right after the handshake so feature modules had a template before lifecycle/CLI work. There is **no remaining Step 12** — use Step 4b / Skeleton.
 
 ### Step 13 — Pilot + product hosts
 
