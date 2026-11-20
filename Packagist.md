@@ -2,7 +2,7 @@
 
 **Status:** Beta published — `inengine/modulus` and `inengine/modulus-composer` at **`v0.1.0-beta.2`**. Alert at **`v1.0.2`**. Core project beta **`v0.1.0-beta.1`** (GitHub Releases; not Packagist).
 
-**Immutable tags:** Never move/retarget a published GitHub/Packagist tag. Fix CI on `main` with new commits; cut `v0.1.0-beta.N+1` (or stable) if a tagged tree itself must change.
+**Immutable tags:** Never move/retarget a published GitHub/Packagist tag. Fix on **`dev`**, PR into **`main`**, then cut `v0.1.0-beta.N+1` (or stable) if a tagged tree itself must change. See [Git workflow.md](Git%20workflow.md).
 
 ## Packages (public MIT)
 
@@ -28,7 +28,7 @@ Core (`inengine/core`) stays a **project** (`create-project` / clone). Published
 
 ## Steps (next stable)
 
-1. Default branch `main` contains the release commit.
+1. Merge `dev` → `main` so the release commit is on `main`.
 2. Tag annotated release: `git tag -a v0.1.0 -m "v0.1.0"` && `git push origin v0.1.0`.
 3. Packagist webhook auto-updates (packages already submitted).
 4. Switch Core / Composer published constraints from `^0.1@beta` → `^0.1`.
