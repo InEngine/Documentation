@@ -2,6 +2,8 @@
 
 **Status:** Beta published — `inengine/modulus` and `inengine/modulus-composer` at **`v0.1.0-beta.1`**.
 
+**Immutable tags:** Never move/retarget a published GitHub/Packagist tag. Fix CI on `main` with new commits; cut `v0.1.0-beta.2` (or stable) if a tagged tree itself must change.
+
 ## Packages (public MIT)
 
 | Package | GitHub | Tag |
