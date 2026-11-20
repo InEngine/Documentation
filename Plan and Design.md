@@ -407,7 +407,7 @@ Behavior sketch:
 ## Deferred research (not scheduled)
 
 - **Configurable flows / processes** — Let admins define onboarding, recruiting, or biz/process sequences that compose User, Person, Alert, auth companions, etc., **without shipping a custom module per process**. Likely builds on Capability Registry tokens + optional defaults; exact engine (workflow module vs config packs vs UI-defined graphs) TBD. Handoff also on User `IDENTITY_ARCHITECTURE.md` / session handoff.
-- **Optional fields / attributes (incl. DB)** — Mark or expose fields as required vs optional (or capability-gated) so products don’t need forked migrations/modules per customer schema. Related to flows; same handoff docs.
+- **Optional fields / attributes (incl. DB)** — Mark or expose fields as required vs optional (or capability-gated) so products don’t need forked migrations/modules per customer schema. Related to flows; same handoff docs. Design must include **safety** (SQL injection / untrusted field keys on dynamic forms: allowlists, parameterized access) and **UI caching** (cache form/UI defs; invalidate only when the form or related UI element changes).
 
 ## Changelog of design decisions
 
