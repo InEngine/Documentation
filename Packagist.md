@@ -1,15 +1,16 @@
 # Packagist publish checklist
 
-**Status:** Beta published — `inengine/modulus` and `inengine/modulus-composer` at **`v0.1.0-beta.1`**.
+**Status:** Beta published — `inengine/modulus` and `inengine/modulus-composer` at **`v0.1.0-beta.2`**. Alert at **`v1.0.2`**. Core project beta **`v0.1.0-beta.1`** (GitHub Releases; not Packagist).
 
-**Immutable tags:** Never move/retarget a published GitHub/Packagist tag. Fix CI on `main` with new commits; cut `v0.1.0-beta.2` (or stable) if a tagged tree itself must change.
+**Immutable tags:** Never move/retarget a published GitHub/Packagist tag. Fix CI on `main` with new commits; cut `v0.1.0-beta.N+1` (or stable) if a tagged tree itself must change.
 
 ## Packages (public MIT)
 
 | Package | GitHub | Tag |
 |---------|--------|-----|
-| `inengine/modulus` | https://github.com/InEngine/Modulus | `v0.1.0-beta.1` |
-| `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | `v0.1.0-beta.1` |
+| `inengine/modulus` | https://github.com/InEngine/Modulus | `v0.1.0-beta.2` |
+| `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | `v0.1.0-beta.2` |
+| `inengine/alert` | https://github.com/InEngine/Alert | `v1.0.2` |
 
 ```bash
 composer require inengine/modulus:^0.1@beta

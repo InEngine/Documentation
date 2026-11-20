@@ -340,13 +340,14 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 
 Originally “module skeleton.” Pulled forward as **Step 4b** (`InEngine/Skeleton`) right after the handshake so feature modules had a template before lifecycle/CLI work. There is **no remaining Step 12** — use Step 4b / Skeleton.
 
-### Step 13 — Pilot + product hosts — **IN PROGRESS**
+### Step 13 — Pilot + product hosts — **DONE**
 
 - Convert one module (e.g. Alert) **from the skeleton**; verify on Core Herd.  
 - Copy Core early-boot pattern (`PackageManifestInstaller`) into other product hosts as they adopt Modulus.  
 - **Why:** Prove the spine before packs/CRM/LMS.  
 - **Considerations:** Migrate existing `extra.laravel.providers` packages onto base provider without breaking standalone use.  
-- **2026-11-20:** Alert extends `ModuleServiceProvider`, capability descriptor + `resources/dist`; Core requires Packagist betas + `bin/setup`.
+- **2026-11-20:** Alert extends `ModuleServiceProvider`, capability descriptor + `resources/dist`; Core requires Packagist betas + `bin/setup`.  
+- **2026-11-20 closeout:** Disabled Alert is omitted from discovery / does not boot (provider, config, Artisan); Core host gating tests cover enable↔disable across fresh boots. Other product hosts still adopt `PackageManifestInstaller` as they come online.
 
 ### Step 14 — `inengine/modulus-inspect` (capability catalog)
 
