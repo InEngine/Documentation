@@ -1,11 +1,13 @@
 # Packagist publish checklist
 
+**Status:** Hold — repos are public and Packagist-ready, but **do not submit** and **do not cut GitHub Releases/tags** until Step 11 is closed and we intentionally release.
+
 ## Packages (public MIT)
 
-| Package | GitHub | First tag |
-|---------|--------|-----------|
-| `inengine/modulus` | https://github.com/InEngine/Modulus | `v0.1.0` |
-| `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | `v0.1.0` |
+| Package | GitHub | First tag (when releasing) |
+|---------|--------|------------------------------|
+| `inengine/modulus` | https://github.com/InEngine/Modulus | (TBD) |
+| `inengine/modulus-composer` | https://github.com/InEngine/Modulus-Composer | (TBD) |
 
 Core (`inengine/core`) stays a **project** (`create-project` / clone); it requires `inengine/modulus` `^0.1` from Packagist in production. Local/CI use gitignored `composer.local.json` (from `composer.local.dist.json`) for path `*@dev`.
 

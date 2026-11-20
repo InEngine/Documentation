@@ -1,0 +1,77 @@
+# Template: Pest for packages that path-require inengine/modulus in CI
+# (Skeleton template, Modulus Composer). Copy/adapt into run-tests.yml.
+name: run-tests
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - '.github/workflows/run-tests.yml'
+      - 'phpunit.xml.dist'
+      - 'composer.json'
+      - 'composer.lock'
+  pull_request:
+    paths:
+      - '**.php'
+      - '.github/workflows/run-tests.yml'
+      - 'phpunit.xml.dist'
+      - 'composer.json'
+      - 'composer.lock'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: Package
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.5]
+        laravel: [13.*, 12.*]
+        stability: [prefer-stable]
+        include:
+          - laravel: 13.*
+            testbench: 11.*
+          - laravel: 12.*
+            testbench: 10.*
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }}
+
+    steps:
+      - name: Checkout package
+        uses: actions/checkout@v7
+        with:
+          path: Package
+
+      - name: Checkout Modulus (path sibling)
+        uses: actions/checkout@v7
+        with:
+          repository: InEngine/Modulus
+          ref: main
+          path: Modulus
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, intl, fileinfo
+          coverage: none
+
+      - name: Enable path Modulus
+        run: |
+          composer config repositories.modulus '{"type":"path","url":"../Modulus","options":{"symlink":true}}'
+          if [ -f composer.local.dist.json ]; then cp composer.local.dist.json composer.local.json; fi
+
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      - name: Execute tests
+        run: vendor/bin/pest --ci

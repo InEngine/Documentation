@@ -324,11 +324,15 @@ Ordered work for Modulus, Core, and modules. Each step includes **why** and **co
 - **Why:** Install/Composer I/O and UI stay out of runtime core.  
 - **Considerations:** Auth for private Packagist via Composer `auth.json`; timeouts; non-interactive CI; always discover→disabled→explicit enable; never put Composer hooks in `inengine/modulus`. Core does **not** hard-require this package.
 
-### Step 11 — Quality gates everywhere
+### Step 11 — Quality gates everywhere (**not UI**)
 
 - Enforce SemVer + Pint + Pest + PHPStan on Core, Modulus, and module CI; document in skeleton.  
+- Shared CI templates live in Documentation `ci/` (copy into package `.github/workflows/`).  
+- Host **integration** tests in Core against real Modulus (early boot, `modulus:*`, discovery filter).  
+- **Not this step:** operator UI (`modulus-ui` private Pro) — later, after CLI spine.  
+- **Not this step:** Packagist/GitHub Release tags until intentionally cutting a release (prep only).  
 - **Why:** Platform reliability and release discipline.  
-- **Considerations:** Shared workflow templates; same PHP 8.5 floor.
+- **Considerations:** Same PHP 8.5 floor; path-Modulus CI for Skeleton / Modulus Composer.
 
 ### Step 12 — (relocated)
 

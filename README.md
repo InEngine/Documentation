@@ -6,7 +6,8 @@
 |-----|---------|
 | [Plan and Design.md](Plan%20and%20Design.md) | Platform architecture, Modulus, modules; **Step 10 Composer done** |
 | [Distribution and Installation.md](Distribution%20and%20Installation.md) | `create-project` vs `composer require`; Core, modules, products; **licensing split** |
-| [Packagist.md](Packagist.md) | Public publish checklist for Modulus + Modulus Composer; Skeleton = template only |
+| [Packagist.md](Packagist.md) | Packagist checklist (**hold** until intentional release); Skeleton = template only |
+| [ci/](ci/) | Step 11 workflow templates (Pest / PHPStan / Pint) — not UI |
 
 **Licensing (2026-11-19):** Core / Modulus / Modulus Composer / Skeleton = **MIT**. `modulus-ui` = **private Pro**.
 
