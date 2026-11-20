@@ -404,7 +404,15 @@ Behavior sketch:
 
 ---
 
+## Deferred research (not scheduled)
+
+- **Configurable flows / processes** — Let admins define onboarding, recruiting, or biz/process sequences that compose User, Person, Alert, auth companions, etc., **without shipping a custom module per process**. Likely builds on Capability Registry tokens + optional defaults; exact engine (workflow module vs config packs vs UI-defined graphs) TBD. Handoff also on User `IDENTITY_ARCHITECTURE.md` / session handoff.
+
 ## Changelog of design decisions
+
+### 2026-11-20
+
+- Identity/auth notes: User hub + social companions; Registry in Modulus; `identity-contracts` vs auth companions; UI display labels (`modulus-ui` → “Modulus”). See User `IDENTITY_ARCHITECTURE.md`, Documentation `Identity and Auth.md`, `Module naming and UI.md`.
 
 ### 2026-11-19
 
