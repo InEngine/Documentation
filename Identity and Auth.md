@@ -2,7 +2,7 @@
 
 Design notes for composing **User**, optional **social companions** (Google, GitHub, …), optional **Person**, and Modulus capability discovery.
 
-**Canonical copy for implementation:** [InEngine/User `docs/IDENTITY_ARCHITECTURE.md`](https://github.com/InEngine/User/blob/dev/docs/IDENTITY_ARCHITECTURE.md) (also under `Modules/User/docs/` in the monorepo).
+**Canonical copy for implementation:** [InEngine/User `IDENTITY_ARCHITECTURE.md`](https://github.com/InEngine/User/blob/dev/IDENTITY_ARCHITECTURE.md) (also under `Modules/User/docs/` in the monorepo).
 
 ## One-line summary
 
