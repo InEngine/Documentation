@@ -115,7 +115,7 @@ Anything that is **not** the enable/disable/discovery runtime stays out of `inen
 | **`inengine/modulus-composer`** | Composer client | `composer require` / `remove` / update wrappers; Packagist / private Packagist / Git; Artisan hooks → discover/publish (install ≠ enable). **Public MIT** |
 | **`inengine/modulus-marketplace`** | Browse / catalog UX | Search known module sources; may depend on `modulus-composer` for install; CLI first, optional UI later |
 | **`inengine/modulus-ui`** | Operator UI | Livewire (or similar) screens that call Modulus + extension APIs; no Composer shelling of its own — **private Pro** (commercial; not public Packagist) |
-| **`inengine/modulus-inspect`** | Capability catalog | Inspect / compat / integrate docs (Step 14); richer than Composer `suggest` |
+| **`inengine/modulus-inspect`** | Optional inspect UX | Deferred; **Capability Registry lives in Modulus core** (Step 14). Inspect may later present the same data. |
 
 **Licensing split:** Core + Modulus + Modulus Composer + Skeleton = **MIT** (public). **`modulus-ui` = private Pro**.
 
@@ -349,35 +349,38 @@ Originally “module skeleton.” Pulled forward as **Step 4b** (`InEngine/Skele
 - **2026-11-20:** Alert extends `ModuleServiceProvider`, capability descriptor + `resources/dist`; Core requires Packagist betas + `bin/setup`.  
 - **2026-11-20 closeout:** Disabled Alert is omitted from discovery / does not boot (provider, config, Artisan); Core host gating tests cover enable↔disable across fresh boots. Other product hosts still adopt `PackageManifestInstaller` as they come online.
 
-### Step 14 — `inengine/modulus-inspect` (capability catalog)
+### Step 14 — Capability Registry (in Modulus core) — **IN PROGRESS**
 
-A future **addon** (`inengine/modulus-inspect`) that interrogates Modulus-compatible modules more deeply than Composer “suggest”:
+Soft capability discovery lives **in `inengine/modulus`**, persisted on the state store from skeleton descriptors (readable when disabled). Optional later `modulus-inspect` / UI only **presents** the registry — it is not a second catalog.
 
-| Question (CLI / API / later UI) | Answer source |
+| Question (API / CLI / later UI) | Answer source |
 |---------------------------------|---------------|
-| What can this module do? | Declared provides: contracts, abilities, Artisan commands, events |
-| What should connect to it? | Declared requires / recommends / optional peers (other modules or contracts) |
-| What sub-modules or related packages belong with it? | Declared related packages / sub-features |
-| How does a custom module integrate? | Documented bind points: interfaces to implement, events to listen/dispatch, container bindings, example Artisan/`modulus:*` flows |
+| What can this module do? | Descriptor `provides` / `drivers` / `binds` tokens |
+| What should connect to it? | Descriptor `requires` / `peers` |
+| Which package provides token X? | `CapabilityRegistry::providersOf` / `firstProvider` / `hasProvider` |
+| Which drivers exist for a family? | `CapabilityRegistry::driversOf('person.user.driver')` |
 
-Behavior sketch:
+Behavior:
 
-1. Modules from the skeleton expose a **capability descriptor** (PHP class and/or committed manifest generated/validated in CI).  
-2. Catalog extension reads descriptors from **installed** (and optionally Packagist-listed) Modulus modules without requiring them to be enabled.  
-3. Surfaces `modulus:inspect {module}`, `modulus:compat {module}`, peer suggestions, and machine-readable `--json` for UI.  
-4. May collaborate with `modulus-marketplace` / `modulus-composer` for “install recommended peer,” but **does not own** enable/disable or Composer require (those stay Modulus runtime + `modulus-composer`).
+1. Skeleton ships static `ModuleCapabilityDescriptor` (+ optional Composer `provide` for non-Modulus reuse).  
+2. `register()` / `discover()` merge descriptor payloads into each package’s state `capabilities` blob.  
+3. Bindings stay in providing modules’ providers; multi-impl uses **named drivers + Manager** (not one interface rebound thrice).  
+4. Thin `modulus:capabilities` Artisan reads the registry (`--json` for UI).
 
-**Why:** Operators and module authors need WordPress-like “what plugs into what,” with typed PHP contracts—not only Packagist suggest strings.  
-**Considerations:** Descriptors must be readable when the module is disabled (do not depend on booting the module provider); version capability schemas; keep this out of Modulus core so the runtime stays lean.
+**Why:** Optional peers (User ↔ Person ↔ social companions, Alert-style defaults) need discovery without forking modules or hard-requiring every peer.  
+**Considerations:** Descriptors must not need a booted provider; tokens use `family:name` for drivers; do not use the registry as a service locator for concrete classes.
+
+Details: Modulus `docs/STEP-14.md`, User `IDENTITY_ARCHITECTURE.md`.
 
 ---
 
 ## Non-goals (this spine)
 
-- Plugins / marketplace / Composer-client / inspect / operator UI inside Modulus **core** (`modulus-*` extensions only)  
-- Marketplace, Composer hooks, or inspect UI before CLI + discovery sync + doctor are solid  
+- Marketplace / Composer-client / operator UI inside Modulus **core** (`modulus-*` extensions only; Capability Registry is in core per Step 14)  
+- Marketplace or Pro UI before CLI + discovery sync + doctor + registry are solid  
 - Composer require/remove or Composer event hooks inside `inengine/modulus` core  
 - Database-backed module registry  
+- Registry instantiating concrete implementations (bindings stay in providers)  
 - Destructive uninstall as default  
 - Use-case “packs” as first deliverable  
 - Users/auth inside Core  
@@ -400,7 +403,7 @@ Behavior sketch:
 | `inengine/modulus-composer` | Shipped — Composer require/remove/update/approve; public MIT |
 | `inengine/modulus-marketplace` | Planned — browse/search; uses composer client for install |
 | `inengine/modulus-ui` | Planned — operator UI; **private Pro** |
-| `inengine/modulus-inspect` | Planned — capability inspect / compat / integrate docs |
+| `inengine/modulus-inspect` | Deferred — optional UX over in-core Capability Registry |
 
 ---
 
@@ -414,6 +417,7 @@ Behavior sketch:
 ### 2026-11-20
 
 - Identity/auth notes: User hub + social companions; Registry in Modulus; `identity-contracts` vs auth companions; UI display labels (`modulus-ui` → “Modulus”). See User `IDENTITY_ARCHITECTURE.md`, Documentation `Identity and Auth.md`, `Module naming and UI.md`.
+- **Step 14 pivot:** Capability Registry **in Modulus core** (not `modulus-inspect` as system of record). Skeleton dual-support: descriptor + Composer `provide`. Multi-impl via drivers/Manager.
 
 ### 2026-11-19
 
