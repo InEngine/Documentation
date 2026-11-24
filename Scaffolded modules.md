@@ -25,4 +25,15 @@ Created from Skeleton `v0.1.0-beta.1` under `Modules/`. Handshake + tooling only
 |-----|---------|-------|
 | `Theme` | `inengine/theme` | Design tokens / colors for UI modules |
 
-GitHub remotes / Packagist not created yet — local monorepo scaffolds only.
+Private GitHub repos (default branch `dev`); Packagist not published yet.
+
+| Package | Repo |
+|---------|------|
+| `inengine/user` | https://github.com/InEngine/User *(existing)* |
+| `inengine/local-user` | https://github.com/InEngine/LocalUser |
+| `inengine/google-user` | https://github.com/InEngine/GoogleUser |
+| `inengine/github-user` | https://github.com/InEngine/GithubUser |
+| `inengine/person` | https://github.com/InEngine/Person |
+| `inengine/modulus-config` | https://github.com/InEngine/Modulus-Config |
+| `inengine/modulus-config-ui` | https://github.com/InEngine/Modulus-Config-UI |
+| `inengine/theme` | https://github.com/InEngine/Theme |
