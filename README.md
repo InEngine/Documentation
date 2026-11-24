@@ -7,6 +7,10 @@
 | [Plan and Design.md](Plan%20and%20Design.md) | Platform architecture, Modulus, modules; **Step 10 Composer done** |
 | [Distribution and Installation.md](Distribution%20and%20Installation.md) | `create-project` vs `composer require`; Core, modules, products; **licensing split** |
 | [Packagist.md](Packagist.md) | Packagist checklist (**hold** until intentional release); Skeleton = template only |
+| [Git workflow.md](Git%20workflow.md) | **`dev` → `main`/`master` PR** standard for all InEngine repos |
+| [Identity and Auth.md](Identity%20and%20Auth.md) | User hub, social companions, Person, registry / optional modules |
+| [Scaffolded modules.md](Scaffolded%20modules.md) | New local scaffolds (auth companions, Person, modulus-config, Theme) — no prod code yet |
+| [Module naming and UI.md](Module%20naming%20and%20UI.md) | UI display labels vs Composer package names; CLI shortcuts |
 | [ci/](ci/) | Step 11 workflow templates (Pest / PHPStan / Pint) — not UI |
 
 **Licensing (2026-11-19):** Core / Modulus / Modulus Composer / Skeleton = **MIT**. `modulus-ui` = **private Pro**.
