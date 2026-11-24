@@ -10,7 +10,7 @@ Design notes for composing **User**, optional **social companions** (Google, Git
 
 ## Scaffold status
 
-Local monorepo scaffolds (Skeleton only — **no production code yet**): `Modules/User`, `LocalUser`, `GoogleUser`, `GithubUser`, `Person`. See [Scaffolded modules.md](Scaffolded%20modules.md).
+Local monorepo scaffolds (Skeleton only — **no production code yet**): `Modules/User`, `AuthTypeLocal`, `AuthTypeGoogle`, `AuthTypeGithub`, `Person`. See [Scaffolded modules.md](Scaffolded%20modules.md).
 
 ## See also
 
