@@ -2,12 +2,12 @@
 
 Created from Skeleton under `Modules/`. Private GitHub repos; default branch `dev`. Packagist not published yet.
 
-## Contracts (ports / tokens only)
+## Contracts (Modulus modules — ports / tokens only)
 
 | Dir | Package | Status |
 |-----|---------|--------|
-| `IdentityContracts` | `inengine/identity-contracts` | `DisplayNameResolver`, `PersonResolver`, `IdentityCapability` |
-| `AuthContracts` | `inengine/auth-contracts` | `AuthMethod`, `LocalCredentialsContract`, `AuthMethodList` |
+| `IdentityContracts` | `inengine/identity-contracts` | Modulus module; `DisplayNameResolver`, `PersonResolver`, `IdentityCapability` |
+| `AuthContracts` | `inengine/auth-contracts` | Modulus module; `AuthMethod`, `LocalCredentialsContract`, `AuthMethodList` |
 
 ## Identity / auth
 
