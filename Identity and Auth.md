@@ -27,13 +27,15 @@ Login UI lives in future `auth-*-ui` packages — not in companions.
 
 | Area | Status |
 |------|--------|
-| IdentityContracts + AuthContracts | Implemented + GitHub |
-| User (UUID, helpers, Authenticatable) | Foundation implemented |
-| Auth-Local (credentials + contract bind) | Foundation implemented |
+| IdentityContracts + AuthContracts | Library modules implemented (private GitHub; path-only) |
+| User (UUID, EmbeddedShortId relations, gate) | Foundation implemented + CI green |
+| Auth-Local (credentials + UserExtensionGate) | Foundation implemented + CI green |
+| Modulus library kind / ModuleExtensionGate | Implemented (libraries always-on like Modulus core) |
+| Modulus-UI | Scaffold from Skeleton; wired in Core + PhpStorm; CI green — UI next |
 | Auth-Google / Auth-Github | Scaffold only |
-| Person | Scaffold only — next |
+| Person | Scaffold only — **next** for identity stack |
 
-See [Scaffolded modules.md](Scaffolded%20modules.md).
+Session handoff: User `.cursor/SESSION_HANDOFF.md`. See [Scaffolded modules.md](Scaffolded%20modules.md).
 
 ## See also
 

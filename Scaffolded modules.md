@@ -27,6 +27,7 @@ Composer `"type": "library"` + Modulus capability `kind: library` (always boot w
 |-----|---------|-------|
 | `ModulusConfig` | `inengine/modulus-config` | Read/write module config |
 | `ModulusConfigUI` | `inengine/modulus-config-ui` | Operator UI (label: Modulus Config) |
+| `ModulusUI` | `inengine/modulus-ui` | Operator UI (label: **Modulus**); private Pro; scaffold from Skeleton — UI implementation next |
 
 ## Theme
 
@@ -45,4 +46,5 @@ Composer `"type": "library"` + Modulus capability `kind: library` (always boot w
 | `inengine/person` | https://github.com/InEngine/Person |
 | `inengine/modulus-config` | https://github.com/InEngine/Modulus-Config |
 | `inengine/modulus-config-ui` | https://github.com/InEngine/Modulus-Config-UI |
+| `inengine/modulus-ui` | https://github.com/InEngine/Modulus-UI |
 | `inengine/theme` | https://github.com/InEngine/Theme |
