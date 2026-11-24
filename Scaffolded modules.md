@@ -2,12 +2,14 @@
 
 Created from Skeleton under `Modules/`. Private GitHub repos; default branch `dev`. Packagist not published yet.
 
-## Contracts (Modulus modules — ports / tokens only)
+## Contracts (Modulus library modules — ports / tokens only)
+
+Composer `"type": "library"` + Modulus capability `kind: library` (always boot when installed; contribute to registry without enable). User hard-requires both.
 
 | Dir | Package | Status |
 |-----|---------|--------|
-| `IdentityContracts` | `inengine/identity-contracts` | Modulus module; `DisplayNameResolver`, `PersonResolver`, `IdentityCapability` |
-| `AuthContracts` | `inengine/auth-contracts` | Modulus module; `AuthMethod`, `LocalCredentialsContract`, `AuthMethodList` |
+| `IdentityContracts` | `inengine/identity-contracts` | Library; `DisplayNameResolver`, `PersonResolver`, `UserType`, `EntityMorph` |
+| `AuthContracts` | `inengine/auth-contracts` | Library; `AuthMethod`, `LocalCredentialsContract`, `AuthMethodList` |
 
 ## Identity / auth
 

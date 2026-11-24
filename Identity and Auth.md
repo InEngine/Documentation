@@ -12,9 +12,9 @@ Design notes for composing **User**, optional **auth companions** (Local, Google
 
 | Package | Role |
 |---------|------|
-| `inengine/identity-contracts` | Modulus module — ports/tokens for User↔Person (`DisplayNameResolver`, `PersonResolver`, `IdentityCapability`) — no migrations |
-| `inengine/auth-contracts` | Modulus module — auth-method ports/tokens (`AuthMethod`, `LocalCredentialsContract`, `AuthMethodList`) |
-| `inengine/user` | UUID authenticatable hub; owns `users` + `auth_methods`; binds Authenticatable loosely |
+| `inengine/identity-contracts` | Modulus **library** — ports/tokens (`DisplayNameResolver`, `UserType`, `EntityMorph`, …); Composer-required by User |
+| `inengine/auth-contracts` | Modulus **library** — auth ports/tokens (`AuthMethod`, `LocalCredentialsContract`, …); Composer-required by User |
+| `inengine/user` | UUID hub; `auth_methods` JSON, `type`, entity morph, `enabled`, soft deletes |
 | `inengine/auth-local` | `auth_local_credentials` by `user_id`; implements `LocalCredentialsContract` |
 | `inengine/auth-google` / `auth-github` | OAuth companions (scaffold) |
 | `inengine/person` | Optional demographics (next) |
