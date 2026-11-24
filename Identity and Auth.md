@@ -35,7 +35,10 @@ Login UI lives in future `auth-*-ui` packages — not in companions.
 | Auth-Google / Auth-Github | Scaffold only |
 | Person | Scaffold only — **next** for identity stack |
 
-Session handoff: User `.cursor/SESSION_HANDOFF.md`. See [Scaffolded modules.md](Scaffolded%20modules.md).
+Session handoff: User `.cursor/SESSION_HANDOFF.md` (and Core `.cursor/SESSION_HANDOFF.md`).  
+**Local Herd testing:** Core `docs/local-modules.md` — path modules + gitignored host playground (`routes/local.php`, etc.) so migrations/UI/routes can run on https://inengine.app without committing Core scratch.
+
+See [Scaffolded modules.md](Scaffolded%20modules.md).
 
 ## See also
 
