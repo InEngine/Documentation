@@ -1,16 +1,23 @@
-# Scaffolded modules (no prod code yet)
+# Scaffolded modules
 
-Created from Skeleton `v0.1.0-beta.1` under `Modules/`. Handshake + tooling only.
+Created from Skeleton under `Modules/`. Private GitHub repos; default branch `dev`. Packagist not published yet.
+
+## Contracts (ports / tokens only)
+
+| Dir | Package | Status |
+|-----|---------|--------|
+| `IdentityContracts` | `inengine/identity-contracts` | `DisplayNameResolver`, `PersonResolver`, `IdentityCapability` |
+| `AuthContracts` | `inengine/auth-contracts` | `AuthMethod`, `LocalCredentialsContract`, `AuthMethodList` |
 
 ## Identity / auth
 
 | Dir | Package | Notes |
 |-----|---------|-------|
-| `User` | `inengine/user` | Hub — rebuilt from Skeleton |
-| `LocalUser` | `inengine/local-user` | Auth companion — `auth.method:local` |
-| `GoogleUser` | `inengine/google-user` | Auth companion — `auth.method:google` |
-| `GithubUser` | `inengine/github-user` | Auth companion — `auth.method:github` |
-| `Person` | `inengine/person` | Optional demographics |
+| `User` | `inengine/user` | UUID hub — `auth_methods` JSON; loose Authenticatable |
+| `AuthLocal` | `inengine/auth-local` | Local credentials + `LocalCredentialsContract` bind |
+| `AuthGoogle` | `inengine/auth-google` | Scaffold — `auth.method:google` |
+| `AuthGithub` | `inengine/auth-github` | Scaffold — `auth.method:github` |
+| `Person` | `inengine/person` | Next — optional demographics |
 
 ## Modulus extensions
 
@@ -25,14 +32,14 @@ Created from Skeleton `v0.1.0-beta.1` under `Modules/`. Handshake + tooling only
 |-----|---------|-------|
 | `Theme` | `inengine/theme` | Design tokens / colors for UI modules |
 
-Private GitHub repos (default branch `dev`); Packagist not published yet.
-
 | Package | Repo |
 |---------|------|
-| `inengine/user` | https://github.com/InEngine/User *(existing)* |
-| `inengine/local-user` | https://github.com/InEngine/LocalUser |
-| `inengine/google-user` | https://github.com/InEngine/GoogleUser |
-| `inengine/github-user` | https://github.com/InEngine/GithubUser |
+| `inengine/identity-contracts` | https://github.com/InEngine/Identity-Contracts |
+| `inengine/auth-contracts` | https://github.com/InEngine/Auth-Contracts |
+| `inengine/user` | https://github.com/InEngine/User |
+| `inengine/auth-local` | https://github.com/InEngine/Auth-Local |
+| `inengine/auth-google` | https://github.com/InEngine/Auth-Google |
+| `inengine/auth-github` | https://github.com/InEngine/Auth-Github |
 | `inengine/person` | https://github.com/InEngine/Person |
 | `inengine/modulus-config` | https://github.com/InEngine/Modulus-Config |
 | `inengine/modulus-config-ui` | https://github.com/InEngine/Modulus-Config-UI |
