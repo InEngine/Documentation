@@ -8,6 +8,10 @@ Design notes for composing **User**, optional **social companions** (Google, Git
 
 **One User hub**; Google/GitHub as **optional side modules** that link into User; **Person** optional demographics; **Registry in Modulus** for soft discovery; **`users.auth_methods` JSON** allow-list of registry-aligned method ids; **contracts + default bindings** so apps work when modules are omitted.
 
+## Scaffold status
+
+Local monorepo scaffolds (Skeleton only — **no production code yet**): `Modules/User`, `LocalUser`, `GoogleUser`, `GithubUser`, `Person`. See [Scaffolded modules.md](Scaffolded%20modules.md).
+
 ## See also
 
 - [Plan and Design.md](Plan%20and%20Design.md) — Step 14 Capability Registry  
