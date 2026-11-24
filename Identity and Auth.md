@@ -16,7 +16,7 @@ Design notes for composing **User**, optional **auth companions** (Local, Google
 | `inengine/auth-contracts` | Modulus **library** — auth ports/tokens (`AuthMethod`, `LocalCredentialsContract`, …); Composer-required by User |
 | `inengine/user` | UUID hub; `auth_methods` / `types` JSON via `EmbeddedShortIdRelation`, entity morph, `enabled`, soft deletes |
 
-Companions extend User with `Model::resolveRelationUsing()` / `User::macro()` — never traits that patch User source. See User `IDENTITY_ARCHITECTURE.md`.
+Companions extend User with `Model::resolveRelationUsing()` / `User::macro()` via `UserExtensionGate` — only when Modulus registry has `identity.user` + `identity.user.config`, User is enabled, and `config('user.model')` resolves. Never traits that patch User source. See User `IDENTITY_ARCHITECTURE.md`.
 | `inengine/auth-local` | `auth_local_credentials` by `user_id`; implements `LocalCredentialsContract` |
 | `inengine/auth-google` / `auth-github` | OAuth companions (scaffold) |
 | `inengine/person` | Optional demographics (next) |
