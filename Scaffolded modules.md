@@ -6,7 +6,7 @@ Created from Skeleton `v0.1.0-beta.1` under `Modules/`. Handshake + tooling only
 
 | Dir | Package | Notes |
 |-----|---------|-------|
-| `User` | `inengine/user` | Hub (existing) |
+| `User` | `inengine/user` | Hub — rebuilt from Skeleton |
 | `LocalUser` | `inengine/local-user` | Auth companion — `auth.method:local` |
 | `GoogleUser` | `inengine/google-user` | Auth companion — `auth.method:google` |
 | `GithubUser` | `inengine/github-user` | Auth companion — `auth.method:github` |
